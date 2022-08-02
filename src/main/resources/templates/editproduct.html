@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head >
+        <title>Customer Mng</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    </head>
+    <body style=" background: #74BBF9; 
+background: -webkit-linear-gradient(to top, #FFFDE4, #74BBF9); 
+background: linear-gradient(to top, #FFFDE4, #74BBF9)
+          ">
+        <header th:replace="layout/layout :: header"></header>
+        <div class="container">
+           <h2>Product Edition</h2>
+        </div>
+        <div class="container">
+            <form class="row g-3" th:action="@{/saveproduct}" method="post" th:object="${product}">
+
+                <div class="col-md-6" th:if="${product.productId != null}">
+                    <label for="productId" class="form-label">ID Product</label>
+                    <input type="text" class="form-control"required id="productId" th:field="*{productId}" readonly/>
+                </div>
+                <div class="col-md-6" th:if="${product.productId == null}">
+                    <label for="productId" class="form-label">ID Product</label>
+                    <input type="text" class="form-control" required id="productId" th:field="*{productId}"/>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="productName" class="form-label">Product Full Name</label>
+                    <input type="text" class="form-control" required id="productName" th:field="*{productName}"/>
+                </div>
+                <div class="col-12">
+                    <label for="categoryId" class="form-label">Category Id</label>
+                    <input type="text" onchange="validar()" required class="form-control" maxlength="1" id="categoryId"  th:field="*{categoryId.categoryId}"/>
+                </div>
+                <div class="col-md-6">
+                    <label for="price" class="form-label">Price</label>
+                    <input type="tel" class="form-control" id="price" th:field="*{price}" required=""/>
+                </div>
+                
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary" name="save" value="save">Save</button>
+                </div>
+            </form>
+        </div>
+        <footer th:replace="layout/layout :: footer"></footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    </body>
+    
+    <script>
+        const productId = document.getElementById("productId").addEventListener("change",(e)=>validar(e))
+        const productName = document.getElementById("productName").addEventListener("change",(e)=>validar(e))
+        const categoryId = document.getElementById("categoryId").addEventListener("change",(e)=>validarCategorias(e))
+        const city = document.getElementById("city").addEventListener("change",(e)=>validar(e))
+
+        const validar = (e)=>{
+                   if(e.target.value.trim().length==0){
+                       e.target.style.border ="1px solid red";
+                       e.target.value = "";
+                       e.target.placeholder ="Obligatorio!."
+                   }else{
+                        e.target.style.border ="1px solid green";
+                   }
+               }
+        const validarCategorias = (e)=>{
+            
+            if(e.target.value !=2 && e.target.value !=1 ){
+                e.target.style.border ="1px solid red";
+                e.target.value = "";
+                e.target.placeholder =" 1 - 2"
+            }else{
+                validar(e)
+                 e.target.style.border ="1px solid green";
+            }
+        }
+        
+     </script>
+     
+</html>

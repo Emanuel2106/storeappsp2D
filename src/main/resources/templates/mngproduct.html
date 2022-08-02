@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Product Mng</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    </head>
+    <body style=" background: #74BBF9; 
+background: -webkit-linear-gradient(to top, #FFFDE4, #74BBF9); 
+background: linear-gradient(to top, #FFFDE4, #74BBF9); 
+
+          ">
+        <header th:replace="layout/layout :: header"></header>
+        <div class="col-auto container" >
+            <form id = "addProductForm" th:action = "@{/addproduct}"  method="get">
+                <div class="pull-right">
+                    <input type="submit" value="Add product" class="btn btn-warning pull-right" />
+                </div>
+            </form>
+        </div>
+        <div th:if="${products != null and !products.empty}" class="col-auto container">
+            <h3 class="text-center">Lista de productos</h3>
+            <table border="0"  class="table table-hover border table-striped bg-gradient" >
+            <tr>
+                <th>ProductId</th>
+                <th>ProductName</th>
+                <th>CategoryId</th>
+                <th>CategoryName</th>
+                <th>Price</th>
+                <th>Options</th>
+
+            </tr>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.productId}">ID</th>
+                <td th:text="${product.productName}">ProductName</th>
+                <td th:text="${product.categoryId.categoryId}">CategoryId</th>  
+                <td th:text="${product.categoryId.categoryName}">CategoryId</th>
+                <td th:text="${product.price}">Price</th>
+                <td> 
+                    
+                    
+                   <a  class="btn btn-success " th:href="@{/editproduct/}+${product.productId}" th:text="Edit">Edit</a>
+                    <a  class="btn btn-danger" th:href="@{/removeproduct(productId=${product.productId})}" th:text="Remove">Remove</a> 
+                </td>
+            </tr>
+        </table>
+        </div>
+        <footer th:replace="layout/layout :: footer">
+            
+            
+        </footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    </body>
+</html>

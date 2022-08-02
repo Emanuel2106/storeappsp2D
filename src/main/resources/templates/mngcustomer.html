@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Customer Mng</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    </head>
+    <body style=" background: #74BBF9; 
+background: -webkit-linear-gradient(to top, #FFFDE4, #74BBF9); 
+background: linear-gradient(to top, #FFFDE4, #74BBF9)
+          ">
+        <header th:replace="layout/layout :: header"></header>
+        <div class="col-auto container" >
+            <form id = "addCustomerForm" th:action = "@{/addcustomer}"  method="get">
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <input type="submit" value="Add customer" class="btn btn-black bg-warning" />
+                </div>
+            </form>
+        </div>
+        <div th:if="${customers != null and !customers.empty}" class="col-auto container">
+            <h3 class="text-center  ">Lista de clientes</h3>
+            
+            <table border="0"  class="table table-hover border table-striped bg-gradient" >
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Phone</th>
+                <th>Mobile</th>
+                <th>Email</th>
+                <th>Notes</th>
+                <th>Actions</th>
+            </tr>
+            <tr th:each="customer : ${customers}">
+                <td th:text="${customer.customerID}">ID</th>
+                <td th:text="${customer.customerName}">Name</th>
+                <td th:text="${customer.address}">ID</th>
+                <td th:text="${customer.city}">Name</th>
+                <td th:text="${customer.state}">Mobile</th>
+                <td th:text="${customer.phone}">Email</th>
+                <td th:text="${customer.mobileno}">Mobile</th>
+                <td th:text="${customer.email}">Email</th>
+                <td th:text="${customer.notes}">Notes</th> 
+                    
+                <td   class="btn-group"><!-- Using Path Variable class="inline-block" -->
+                    <a  class="btn btn-success inline-block " th:href="@{/editcustomer/}+${customer.customerID}" th:text="Edit">Edit</a>
+                    <!-- Using Query Parameters -->
+                    <a  class="btn btn-danger inline-block" th:href="@{/removecustomer(customerID=${customer.customerID})}" th:text="Remove">Remove</a> 
+                </td>
+    
+            </tr>
+        </table>
+        </div>
+        <footer th:replace="layout/layout :: footer"></footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    </body>
+</html>

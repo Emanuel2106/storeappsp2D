@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html>
+    <head  xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+        <title>Layout</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body >
+        <header fragment="header" style=" background: black">
+            <div class="container">
+                <nav class="navbar navbar-dark bg-black">
+                    <div class="container-fluid">
+                        <a class="navbar-brand"  aria-current="page" th:href="@{/}">StoreApp</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" th:href="@{/}">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" th:href="@{/customer}">Customers</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" th:href="@{/product}">Products</a>
+                                </li>
+<!--                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Sales</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Users</a>-->
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <footer th:fragment="footer">
+            <div class="container  " style=" text-align: center ">
+                <br/>
+                <p>Copyright 2022 by USCODev</p>
+            </div>
+            
+            
+        </footer>
+    </body>
+</html>

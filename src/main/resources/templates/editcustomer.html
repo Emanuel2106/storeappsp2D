@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head >
+        <title>Customer Mng</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    </head>
+    <body style=" background: #74BBF9; 
+background: -webkit-linear-gradient(to top, #FFFDE4, #74BBF9); 
+background: linear-gradient(to top, #FFFDE4, #74BBF9)
+          ">
+        <header th:replace="layout/layout :: header"></header>
+        <div class="container">
+           <h2>Customer Edition</h2>
+        </div>
+        <div class="container">
+            <form class="row g-3" th:action="@{/savecustomer}" method="post" th:object="${customer}">
+
+                <div class="col-md-6" th:if="${customer.customerID != null}">
+                    <label for="customerID" class="form-label">ID Customer</label>
+                    <input type="text" class="form-control" id="customerID" th:field="*{customerID}" readonly/>
+                </div>
+                <div class="col-md-6" th:if="${customer.customerID == null}">
+                    <label for="customerID" class="form-label">ID Customer</label>
+                    <input type="text" class="form-control" id="customerID" th:field="*{customerID}"/>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="customerName" class="form-label">Customer Full Name</label>
+                    <input type="text" class="form-control" id="customerName" th:field="*{customerName}"/>
+                </div>
+                <div class="col-12">
+                    <label for="address" class="form-label">Address</label>
+                    <input type="text" class="form-control" id="address" placeholder="1234 Main St" th:field="*{address}"/>
+                </div>
+                <div class="col-md-6">
+                    <label for="city" class="form-label">City</label>
+                    <input type="text" class="form-control" id="city" th:field="*{city}"/>
+                </div>
+                <div class="col-md-6">
+                    <label for="state" class="form-label">State</label>
+                    <input type="text" class="form-control" id="state" th:field="*{state}"/>
+                </div>
+                <div class="col-md-12">
+                    <label for="emai" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" th:field="*{email}"/>
+                </div>
+                <div class="col-md-6">
+                    <label for="phone" class="form-label">Phone</label>
+                    <input type="tel" class="form-control" id="phone" th:field="*{phone}"/>
+                </div>
+                <div class="col-md-6">
+                    <label for="mobileno" class="form-label">Mobile No.</label>
+                    <input type="tel" class="form-control" id="mobileno" th:field="*{mobileno}"/>
+                </div>
+                <div class="col-md-12">
+                    <label for="notes" class="form-label">Notes</label>
+                    <input type="text" class="form-control" id="notes" th:field="*{notes}"/>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary" name="save" value="save">Save</button>
+                </div>
+            </form>
+        </div>
+        <footer th:replace="layout/layout :: footer"></footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    </body>
+</html>
